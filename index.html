@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GDGoC Task Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>
+        <span class="dot blue"></span><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        GDGoC Task Manager
+      </h1>
+      <p class="subtitle">Plan, assign and track tasks for GDGoC IET DAVV events</p>
+    </div>
+    <label class="user-switch">
+      Logged in as
+      <select id="current-user"></select>
+    </label>
+  </header>
+
+  <main>
+    <p id="role-note" class="role-note"></p>
+
+    <section class="stats">
+      <div class="stat"><span id="stat-total">0</span>Total tasks</div>
+      <div class="stat"><span id="stat-todo">0</span>To Do</div>
+      <div class="stat"><span id="stat-progress">0</span>In Progress</div>
+      <div class="stat"><span id="stat-done">0</span>Done</div>
+      <div class="stat warn"><span id="stat-overdue">0</span>Overdue</div>
+    </section>
+
+    <!-- Only visible to Leads -->
+    <section id="lead-panel" class="lead-panel">
+      <form id="task-form" class="card">
+        <h2>Add a new task</h2>
+        <input id="task-title" type="text" placeholder="Task title" required>
+        <textarea id="task-desc" rows="2" placeholder="Short description (optional)"></textarea>
+        <div class="row">
+          <label>Assign to <select id="task-assignee"></select></label>
+          <label>Deadline <input id="task-deadline" type="date" required></label>
+          <label>Priority
+            <select id="task-priority">
+              <option>High</option>
+              <option selected>Medium</option>
+              <option>Low</option>
+            </select>
+          </label>
+        </div>
+        <button type="submit" class="primary">Add task</button>
+      </form>
+
+      <div class="card">
+        <h2>Team</h2>
+        <ul id="team-list" class="team-list"></ul>
+        <form id="member-form" class="row">
+          <input id="member-name" type="text" placeholder="New member name" required>
+          <select id="member-role">
+            <option>Member</option>
+            <option>Lead</option>
+          </select>
+          <button type="submit">Add</button>
+        </form>
+      </div>
+    </section>
+
+    <div class="toolbar">
+      <label>Show <select id="filter"></select></label>
+      <button id="reset-btn" class="link-btn" type="button">Reset demo data</button>
+    </div>
+
+    <section class="board">
+      <div class="column">
+        <h3>To Do <span id="count-todo" class="count">0</span></h3>
+        <div id="list-todo" class="list"></div>
+      </div>
+      <div class="column">
+        <h3>In Progress <span id="count-progress" class="count">0</span></h3>
+        <div id="list-progress" class="list"></div>
+      </div>
+      <div class="column">
+        <h3>Done <span id="count-done" class="count">0</span></h3>
+        <div id="list-done" class="list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>Built by Vedant for the GDGoC IET DAVV Web Development Lead assessment</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
